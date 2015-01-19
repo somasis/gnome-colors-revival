@@ -1,12 +1,8 @@
 PROJECT := gnome-colors-src
-DOCS := AUTHORS ChangeLog COPYING README
+DOCS := AUTHORS LICENSE README.md
 SIZES := 16x16 22x22 24x24 32x32
 THEME_FILES := $(filter-out %~,$(wildcard themes/*))
 LINKS_FILE := links
-DIST_EXTRA := Makefile Palette.svg
-
-gnome-colors_DIST_COMMON := yes
-$(PROJECT)_DIST_COMMON := yes
 
 BRANDING := \
 	places/gnome-main-menu \
@@ -17,8 +13,6 @@ BRANDING := \
 	places/start-here
 
 ############################### Global variables ###############################
-
-VERSION := $(shell head -n 1 ChangeLog | cut -d ' ' -f 1)
 
 ifeq ($(THEME_FILES),)
 ALL_THEMES := $(filter-out src,$(shell find * -maxdepth 1 ! -wholename '*/.*' -type f -name index.theme -printf "%h "))
@@ -191,64 +185,6 @@ help::
 	@echo "    themes                   Lists all available themes."
 
 .PHONY: check fixperms help themes
-
-################################# Distribution #################################
-
-ifneq ($(THEME_FILES),)
-
-DISTRIBUTIONS := $(PROJECT) \
-	$(sort $(foreach theme,$(THEMES),$(call config,$(theme),Distribution)))
-$(PROJECT)_DIST := \
-	$(shell find src ! -wholename '*/.*' -type f) \
-	$(THEME_FILES) \
-	$(LINKS_FILE)
-
-COMMON_LINKS1 := $(filter gnome-colors-common/16x16% gnome-colors-common/22x22%,$(COMMON_LINKS))
-COMMON_LINKS2 := $(filter-out $(COMMON_LINKS1),$(COMMON_LINKS))
-
-define dist_template
-# The tar command must be split, otherwise you get this error:
-# make: execvp: /bin/sh: Argument list too long
-$(1)-$(VERSION).tar: $$(DOCS) $$(DIST_EXTRA) $$($(1)_DIST)
-	$$(MAKE) fixperms
-	tar -cf $$@ $$(filter-out $$(COMMON),$$^)
-ifeq ($($(1)_DIST_COMMON),yes)
-	tar -rf $$@ $$(COMMON_FILES)
-	tar -rf $$@ $$(COMMON_LINKS1)
-	tar -rf $$@ $$(COMMON_LINKS2)
-
-$(1)-$(VERSION).tar: $$(COMMON)
-endif
-
-$(1)-$(VERSION).tar.bz2: $(1)-$(VERSION).tar
-	bzip2 -cz9 $$< > $$@
-
-$(1)-$(VERSION).tar.gz: $(1)-$(VERSION).tar
-	gzip -cn9 $$< > $$@
-endef
-
-define dist_theme_template
-$(call config,$(1),Distribution)-$(VERSION).tar: $(call THEME_BUILD,$(1))
-endef
-
-$(foreach dist,$(DISTRIBUTIONS),$(eval $(call dist_template,$(dist))))
-$(foreach theme,$(THEMES),$(eval $(call dist_theme_template,$(theme))))
-
-dist: gz
-
-dist-src: $(PROJECT)-$(VERSION).tar.gz
-
-bz2: $(addsuffix -$(VERSION).tar.bz2,$(DISTRIBUTIONS))
-
-gz: $(addsuffix -$(VERSION).tar.gz,$(DISTRIBUTIONS))
-
-help::
-	@echo "    dist                     Creates distribution tar files."
-	@echo "    dist-src                 Creates a source distribution tar file."
-	@echo "    bz2                      Create distribution .tar.bz2 files."
-	@echo "    gz                       Create distribution .tar.gz files."
-
-endif
 
 ################################# Installation #################################
 
