@@ -17,6 +17,7 @@ icon theme, and icons to supplement the originals.
 - Skype icons were created by [MastroPino](http://mastropino.deviantart.com/art/eSkype-204048506).
 - Dropbox tray icons were created by [mechanical](http://gnome-look.org/content/show.php/Dropbox+Color+Status+Icons?content=132827).
 - Filezilla icons were created by [DarKobra](http://darkobra.deviantart.com/art/FileZilla-Tango-Icon-103292389).
+- HexChat icons are based off of the [original icons](https://github.com/hexchat/hexchat/blob/master/data/icons/hexchat.svg)
 - The original icon theme was created by [perfectska04](https://code.google.com/u/perfectska04/) and [trollixx](https://code.google.com/u/trollixx/).
     - The authors have since disappeared from the face of the earth.
 - All is licensed under GPLv2, and so is this repo.
