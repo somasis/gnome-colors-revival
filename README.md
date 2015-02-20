@@ -42,13 +42,13 @@ Use `make help` if you want to know what else the Makefile can do.
 **Exherbo users**: There is an exheres in ::somasis; x11-themes/gnome-colors-revival.
 
 ## Credits
-- Skype icons were created by [MastroPino].
-- Dropbox tray icons were created by [mechanical].
-- Filezilla icons were created by [DarKobra].
+- Skype icons were created by [MastroPino]. I have contacted him for details on the licensing.
+- Dropbox tray icons were created by [mechanical]. Licensed under [CC-BY-3.0].
+- Filezilla icons were created by [DarKobra]. Licensed under [CC-BY-SA-3.0].
 - HexChat icons are based off of [HexChat's original icons]
 - The original icon theme was created by [perfectska04] and [trollixx].
   - The authors have since disappeared from the face of the earth.
-- All is licensed under GPLv2, and so is this repo.
+- Anything else, unless stated otherwise is licensed GPLv2.
 
 [GNOME Colors icon theme]: http://code.google.com/p/gnome-colors/
 [MastroPino]: http://mastropino.deviantart.com/art/eSkype-204048506
@@ -60,3 +60,6 @@ Use `make help` if you want to know what else the Makefile can do.
 [releases]: https://github.com/Somasis/gnome-colors-revival/releases
 [arc-colors-revival]: https://github.com/Somasis/arc-colors-revival
 [shiki-colors-revival]: https://github.com/Somasis/shiki-colors-revival
+
+[CC-BY-3.0]: http://creativecommons.org/licenses/by/3.0/
+[CC-BY-SA-3.0]: http://creativecommons.org/licenses/by-sa/3.0/
